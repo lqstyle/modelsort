@@ -1,8 +1,6 @@
-package com.example.cdmodelsort.tree;
+package com.example.leetcode.cdmodelsort.tree;
 
 import java.util.ArrayDeque;
-
-import com.example.cdmodelsort.tree.RecursionTree.TreeNode;
 
 /**
  * NotRecursionTree - 非递归遍历
@@ -14,30 +12,30 @@ import com.example.cdmodelsort.tree.RecursionTree.TreeNode;
 public class NotRecursionTree {
 
     public static void main(String[] args) {
-        final TreeNode treeNode = RecursionTree.buildTree();
-        // 深度优先遍历->中序遍历   根右左  栈实现
+        final TreeNode treeNode = buildTree();
+        // 深度优先遍历->中序遍历 根右左 栈实现
         noRecursionTree(treeNode); // 1243
-        // 深度优先遍历->后续遍历  两个栈  根左右  栈实现
+        // 深度优先遍历->后续遍历 两个栈 根左右 栈实现
         noRecursionPostTree(treeNode); // 4231
-        // 深度优先遍历->中序遍历  先遍历左孩子，若左孩子为空，后遍历右孩子的左孩子  栈实现
+        // 深度优先遍历->中序遍历 先遍历左孩子，若左孩子为空，后遍历右孩子的左孩子 栈实现
         noRecursionMiddleTree(treeNode); // 4213
         // 广度优先遍历 队列实现
         noRecusionWidthTree(treeNode);
     }
 
     private static void noRecusionWidthTree(TreeNode treeNode) {
-        if(treeNode == null){
+        if (treeNode == null) {
             return;
         }
-        ArrayDeque<TreeNode> queue = new ArrayDeque<>() ;
+        ArrayDeque<TreeNode> queue = new ArrayDeque<>();
         queue.add(treeNode);
-        while(!queue.isEmpty()){
-            TreeNode tmp =  queue.poll();
+        while (!queue.isEmpty()) {
+            TreeNode tmp = queue.poll();
             System.out.println(tmp.val);
-            if(tmp.left!=null){
+            if (tmp.left != null) {
                 queue.add(tmp.left);
             }
-            if(tmp.right!=null){
+            if (tmp.right != null) {
                 queue.add(tmp.right);
             }
         }
@@ -128,5 +126,26 @@ public class NotRecursionTree {
                 treeNode = temp.right;
             }
         }
+    }
+
+    static class TreeNode {
+        public int val;
+        TreeNode left;
+        TreeNode right;
+
+        public TreeNode(int val) {
+            this.val = val;
+        }
+    }
+
+    public static TreeNode buildTree() {
+        TreeNode treeNode = new TreeNode(1);
+        TreeNode treeNode1 = new TreeNode(2);
+        TreeNode treeNode2 = new TreeNode(3);
+        TreeNode treeNode3 = new TreeNode(4);
+        treeNode.left = treeNode1;
+        treeNode.right = treeNode2;
+        treeNode1.left = treeNode3;
+        return treeNode;
     }
 }
