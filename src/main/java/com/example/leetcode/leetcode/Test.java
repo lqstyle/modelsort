@@ -169,6 +169,36 @@ public class Test {
         nextGreaterElement(num1, num2);
     }
 
+
+    //19 删除链表的倒数第n个节点
+
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        if(head ==null){
+            return null;
+        }
+        ListNode pre = new ListNode(0);
+        pre.next=head;
+        ListNode tmp = pre;
+        int len=0;
+        while(head!=null){
+            head=head.next;
+            len++;
+        }
+        if(n>len){
+            return pre;
+        }
+        int step = len-n;
+        tmp  = pre;
+        for (int i = 0; i <step ; i++) {
+            tmp = tmp.next;
+        }
+        tmp.next=tmp.next.next;
+
+        return pre.next;
+    }
+
+
+
     public static List<List<Integer>> subsets(int[] nums) {
         if (nums == null || nums.length == 0) {
             return new ArrayList<>();
