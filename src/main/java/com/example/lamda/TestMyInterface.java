@@ -50,11 +50,19 @@ public class TestMyInterface {
     }
 
     public static void test12(int a, int b) {
-        test2(a, b, (t, u) -> {
-            return t.getNumber(a, b) + (int) u;
-        }, (e, f) -> {
-            return e * f;
-        });
+        test2(a, b, getResult(a, b), myInterfaceCalc());
 
+    }
+
+    private static MyFunctionInterface myInterfaceCalc() {
+        return (e, f) -> {
+            return e * f;
+        };
+    }
+
+    private static BiFunction<MyFunctionInterface, Integer, Integer> getResult(int a, int b) {
+        return (t, u) -> {
+            return t.getNumber(a, b) + (int) u;
+        };
     }
 }
