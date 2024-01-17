@@ -53,11 +53,9 @@ public class List24 extends ListNode {
 
         ListNode cur = dummy;
 
-        ListNode tmp ;
-
         while (cur.next != null && cur.next.next != null) {
             // 获取第三个节点 因为已经判断了后两个不为空，不管第三个是否可以为空，都可以获取到
-            tmp = cur.next.next.next;
+            ListNode tmp = cur.next.next.next;
             // 获取第一个节点 此处是头结点 此处为引用
             ListNode node1 = cur.next;
             //获取第二个节点   此处为引用
