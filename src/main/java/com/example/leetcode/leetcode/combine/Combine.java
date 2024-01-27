@@ -43,8 +43,8 @@ public class Combine {
      */
 
     public static void main(String[] args) {
-        int[] nums = new int[] { 1, 2, 3 };
-        System.out.println(letterCombinations("23"));
+        int[] nums = new int[] { 2, 3, 5 };
+        System.out.println(combinationSum(nums,8));
     }
 
     public static List<List<Integer>> combinationSum(int[] candidates, int target) {
