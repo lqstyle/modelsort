@@ -1,12 +1,17 @@
 package com.example.lamda;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public class TestMyInterface {
 
     public static void main(String[] args) {
-        test1();
+        String digits = "";
+        letterCombinations(digits);
+//        test1();
     }
 
     public static void test1() {
@@ -64,5 +69,47 @@ public class TestMyInterface {
         return (t, u) -> {
             return t.getNumber(a, b) + (int) u;
         };
+    }
+
+
+    public static List<String> letterCombinations(String digits) {
+
+
+        List<String> result = new ArrayList<>();
+        if (digits == null || digits.length() == 0) {
+            return result;
+        }
+        StringBuilder sb = new StringBuilder();
+        Map<Character, String> map = new HashMap() {
+            {
+                put('2', "abc");
+                put('3', "def");
+                put('4', "ghi");
+                put('5', "jkl");
+                put('6', "mno");
+                put('7', "pqrs");
+                put('8', "tuv");
+                put('9', "wxyz");
+            }
+        };
+        dfs(result, sb, digits, map, digits.length(), 0);
+        return result;
+    }
+
+    public static void dfs(List<String> result, StringBuilder sb, String digits, Map<Character, String> map, int length, int index) {
+
+        if (length == sb.length()) {
+            result.add(sb.toString());
+            return;
+        }
+
+        String target = map.get(digits.charAt(index));
+        char[] cs = target.toCharArray();
+        for (char c : cs) {
+            sb.append(c);
+            dfs(result, sb, digits, map, length, index + 1);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+
     }
 }
